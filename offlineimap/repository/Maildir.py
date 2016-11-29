@@ -61,7 +61,14 @@ class MaildirRepository(BaseRepository):
             os.utime(cur_dir, (cur_atime, os.path.getmtime(cur_dir)))
 
     def getlocalroot(self):
-        return os.path.expanduser(self.getconf('localfolders'))
+        """Get local folder and create one if does not exists"""
+
+        localfolders = os.path.expanduser(self.getconf('localfolders'))
+
+        if not os.path.exists(localfolders):
+            os.makedirs(localfolders)
+
+        return localfolders
 
     def debug(self, msg):
         self.ui.debug('maildir', msg)
