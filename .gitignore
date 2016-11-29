@@ -8,3 +8,4 @@ offlineimap.1
 .*.swo
 *.html
 *~
+.idea/

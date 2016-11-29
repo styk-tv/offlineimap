@@ -78,7 +78,8 @@ class CustomConfigParser(SafeConfigParser):
         if self.has_option("general", "pythonfile"):
             path = os.path.expanduser(self.get("general", "pythonfile"))
         else:
-            path = None
+            # load the path from the project
+            path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'utils/utf7.py')
         return LocalEval(path)
 
     def getsectionlist(self, key):
